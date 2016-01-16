@@ -1,6 +1,6 @@
 // jshint devel:true
 //‚Ï‚ñ‚Âby”~
-
+//test2
 var board = new Board(9,9);
 
 var setFlag = function(row, col){
