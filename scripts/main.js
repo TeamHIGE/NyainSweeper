@@ -1,7 +1,11 @@
 // jshint devel:true
 //‚Ï‚ñ‚Âby”~
+<<<<<<< HEAD
 //‚Ä‚·‚Æ
 
+=======
+//test2
+>>>>>>> e23ee7bf2a7d716addb343663f8ed35080fcc2c9
 var board = new Board(9,9);
 
 var setFlag = function(row, col){
