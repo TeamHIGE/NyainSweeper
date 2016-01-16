@@ -1,11 +1,12 @@
 // jshint devel:true
-//‚Ï‚ñ‚Âby”~
-//test2
-//ƒeƒXƒg
+
 var board = new Board(9,9);
 
+
+
+
 var setFlag = function(row, col){
-console.log("setFlag(main)");
+	console.log("setFlag(main)");
 	board.setFlag(row, col, function(){
 		var s = document.getElementById(row + "-" + col),img = document.createElement("img");
 		
@@ -18,7 +19,7 @@ console.log("setFlag(main)");
 };
 
 var deleteFlag = function(row, col){
-console.log("deleteFlag(main)");
+	console.log("deleteFlag(main)");
 	board.deleteFlag(row, col, function(){
 		var s = document.getElementById(row + "-" + col);
 		console.log(s);
