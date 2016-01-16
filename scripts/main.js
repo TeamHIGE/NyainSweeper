@@ -1,4 +1,5 @@
 // jshint devel:true
+//‚Ï‚ñ‚Âby”~
 
 var board = new Board(9,9);
 
