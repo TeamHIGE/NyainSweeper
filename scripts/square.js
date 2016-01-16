@@ -1,6 +1,8 @@
 var Square = function(){
 
 	var flagged = false;
+	var neko = false;
+	var number = 0;
 	
 	/**
 	 *	‚±‚Ìƒ}ƒX‚ÉŠø‚ğ—§‚Ä‚é
@@ -32,4 +34,24 @@ var Square = function(){
 		console.log(flagged);
 		return false;
 	};
+	
+	/**
+	 *	‚Ë‚±‚ğ–„‚ß‚é
+	 *	‚Ë‚±‚ÍbooleanŒ^‚É‚·‚é
+	 */
+	
+	this.buryNeko = function(){
+		console.log(neko);
+		return neko;
+	};
+	
+	/**
+	 *	‚Ü‚í‚è‚Ì‚Ë‚±‚Ì”‚ğ•Û‚·‚é
+	 */
+	
+	this.numberNeko(){
+		console.log(number);
+		return number;
+	}
+	
 };
