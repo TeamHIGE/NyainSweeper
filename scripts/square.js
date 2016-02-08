@@ -1,5 +1,19 @@
+/*
+ *	コンソール確認はﾌﾖｳなので、のちに消します
+ *	（console.log）
+ */
+
 var Square = function(){
 
+	/**
+	 *	変数の初期値について
+	 *	フラグ(flagged)は立ってない
+	 *	ねこ(neko)はいない
+	 *	周りの猫の数(number)は0
+	 *	マスは空白(nbsp)である
+	 */
+	 
+	 
 	var flagged = false;
 	var neko = false;
 	var number = 0;
@@ -14,6 +28,7 @@ var Square = function(){
 	this.setNeko = function(){
 		if(neko){
 			neko = true;
+			console.log("ねこが埋まった");
 			return neko;
 		}
 		console.log(neko);
@@ -22,6 +37,7 @@ var Square = function(){
 	
 	/**
 	 *	ねこを確認する
+	 *	nekoを返すだけ
 	 */
 	
 	this.checkNeko = function(){
@@ -32,7 +48,18 @@ var Square = function(){
 	 *	まわりのねこの数を保持する
 	 */
 	
-	this.numberNeko(){
+	this.setNeko(nekoNum){
+		number = nekoNum;
+		console.log(number);
+		return number;
+	}
+	
+	/**
+	 *	数字を確認する
+	 *	まわりのねこの数を返すだけ
+	 */
+	
+	this.checkNeko(){
 		console.log(number);
 		return number;
 	}
