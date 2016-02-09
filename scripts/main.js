@@ -2,9 +2,6 @@
 
 var board = new Board(9,9);
 
-
-
-
 var setFlag = function(row, col){
 	console.log("setFlag(main)");
 	board.setFlag(row, col, function(){

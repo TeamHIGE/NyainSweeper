@@ -25,7 +25,7 @@ var Board = function(rows, cols){
 	 *	
 	 */
 	
-	this.init_map = function(row,col){
+	var initMap = function(row,col){
 		var cnt = 0;
 		while(1){
 			randRow = Math.floor( Math.random() * 9);
@@ -45,12 +45,12 @@ var Board = function(rows, cols){
 			}
 		}
 		
-	}
+	};
 	
 	/**
 	 *	Žü‚è‚Ì‚Ë‚±‚Ì”‚ð”‚¦‚é
 	 */
-	this.getCnt(x, y){
+	this.getCnt = function(x, y){
 		tmpCnt = 0;
 		//¶‘¤‚ÌŒŸ¸
 		if(x > 0){
@@ -61,6 +61,7 @@ var Board = function(rows, cols){
 			if(y < 9){
 				if(squares[x-1][y+1].checkNeko() === true) tmpCnt++;
 			}
+		}
 		//‰E‘¤‚ÌŒŸ¸
 		if(x < 9){
 			if(squares[x+1][y].checkNeko() === true) tmpCnt++;
@@ -70,6 +71,7 @@ var Board = function(rows, cols){
 			if(y < 9){
 				if(squares[x+1][y+1].checkNeko() === true) tmpCnt++;
 			}
+		}
 		if(y > 0){
 			if(squares[x][y+1].checkNeko() === true) tmpCnt++;
 		}
@@ -78,7 +80,7 @@ var Board = function(rows, cols){
 		}
 		
 		return tmpCnt;
-	}
+	};
 	
 	
 	/**

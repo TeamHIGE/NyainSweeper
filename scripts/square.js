@@ -30,7 +30,7 @@ var Square = function(){
 			neko = true;
 			console.log("ねこが埋まった");
 			return neko;
-		}
+		};
 		console.log(neko);
 		return neko;
 	};
@@ -42,37 +42,37 @@ var Square = function(){
 	
 	this.checkNeko = function(){
 		return neko;
-	}
+	};
 	
 	/**
 	 *	まわりのねこの数を保持する
 	 */
 	
-	this.setNeko(nekoNum){
+	this.setNeko = function(nekoNum){
 		number = nekoNum;
 		console.log(number);
 		return number;
-	}
+	};
 	
 	/**
 	 *	数字を確認する
 	 *	まわりのねこの数を返すだけ
 	 */
 	
-	this.checkNeko(){
+	this.checkNeko = function(){
 		console.log(number);
 		return number;
-	}
+	};
 	
 	/**
 	 *	空白ならtureを返す
 	 *	必要ない可能性あるので、要検討
 	 */
 	
-	this.showNbsp(){
+	this.showNbsp = function(){
 		console.log(nbsp);
 		return nbsp;
-	}
+	};
 	
 	/**
 	 *	このマスに旗を立てる
