@@ -59,8 +59,7 @@ var Square = function(){
 	 *	‚Ü‚í‚è‚Ì‚Ë‚±‚Ì”‚ğ•Ô‚·‚¾‚¯
 	 */
 	
-	this.checkNeko = function(){
-		console.log(number);
+	this.checkNumber = function(){
 		return number;
 	};
 	

@@ -2,6 +2,25 @@
 
 var board = new Board(9,9);
 
+
+var initGame = function(row, col){
+	console.log("initGame");
+	console.log(board.checkState());
+	board.initMap(row, col, function(){
+		console.log("initMap activate");
+		var c = document.getElementById("click");
+		
+		c.setAttribute("onclick", "openMass(row + "-" + col); return false;");
+		console.log(c);
+	});
+};
+
+var openMass = function(row, col){
+	var c = document.getElemntById("click");
+	
+	c.setAttribute("onclick", "initGame(" +row+ ", " +col+ "); return false;");
+};
+
 var setFlag = function(row, col){
 	console.log("setFlag(main)");
 	board.setFlag(row, col, function(){
@@ -37,6 +56,7 @@ var deleteFlag = function(row, col){
 		for(j = 0; j < 9; j++){
 			td = document.createElement("td");
 			td.setAttribute("id", i + "-" + j);
+			td.setAttribute("onclick", "initGame("+i+ ", " +j+ ");return false;");
 			td.setAttribute("oncontextmenu","setFlag("+i+ ", " +j+ ");return false;");
 			tr.appendChild(td);
 		}
