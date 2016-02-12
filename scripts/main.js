@@ -32,30 +32,12 @@ var openMass = function(row, col){
 	console.log(s);
 };
 
-/*マスの中身判定*/
+*マスの中身判定*/
 var massStatus = function(row, col){
 	console.log("massStatus(main)");
 	board.massStatus(row, col, function(){
 		var s = document.getElementById(row + "-" + col),img = document.createElement("img");
 		s.setAttribute("oncontextmenu","deleteFlag("+row+ ", " +col+ ");return false;");
-
-		/*	マスステータスによって表示する画像を決定する */			
-		if(mass_status = neko){
-			img.src = "images/neko.png";
-			s.appendChild(img);
-			console.log(s);
-		}
-		else if(mass_status = number){
-			img.src = "images/number.png";
-			s.appendChild(img);
-			console.log(s);
-		}
-		else if(mass_status = nbsp){
-			img.src = "images/nbsp.png";
-			s.appendChild(img);
-			console.log(s);
-		}
-		
 	});
 };
 
