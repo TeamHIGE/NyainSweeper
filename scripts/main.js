@@ -5,16 +5,15 @@ var board = new Board(9,9);
 //最初の一回のみ
 var initGame = function(row, col){
 	console.log("mainのinitGame、ステータスは以下の通り（true = 開始中、false = 未開始）");
-	console.log(board.checkState());
 	board.initMap(row, col, function(){
 		console.log("initMap activate");
 		
 		for(i = 0; i < 9; i++){
 			for(j = 0; j < 9; j++){
-				console.log("i =" + i + " j = " + j);
 				var s = document.getElementById(i + "-" + j);
-				console.log(s);
 				s.setAttribute("onclick", "openMass(" +i+ ", " +j+ "); return false;");
+				var tmpCnt = board.checkNum(i, j);
+				s.innerText =  tmpCnt;
 				if(board.checkBomb(i, j) == true){
 					s.style.backgroundColor = "#008080";
 				}
@@ -41,7 +40,6 @@ var setFlag = function(row, col){
 		
 		img.src = "images/flag.png";
 		s.appendChild(img);
-		console.log(s);
 	});
 };
 
@@ -49,11 +47,8 @@ var deleteFlag = function(row, col){
 	console.log("deleteFlag(main)");
 	board.deleteFlag(row, col, function(){
 		var s = document.getElementById(row + "-" + col);
-		console.log(s);
 		s.removeChild(s.lastChild);
-		console.log(s);
 		s.setAttribute("oncontextmenu","setFlag("+row+ ", " +col+ ");return false;");
-		console.log(s);
 	});
 };
 

@@ -32,6 +32,11 @@ var Board = function(rows, cols){
 		return squares[row][col].checkNeko();
 	};
 	
+	//数字の確認
+	this.checkNum = function(row, col){
+		return squares[row][col].checkNumber();
+	}
+	
 	
 	/**
 	 *	一回目のネコ設置・数字設置
@@ -97,17 +102,15 @@ var Board = function(rows, cols){
 fillNeko = function(row, col){
 	var bomb = 9;
 	var cnt = 0;
-	console.log("fillNeko");
 	//ネコを設置するよ
 	while(1){
 		randRow = Math.floor( Math.random() * 9);
 		randCol = Math.floor( Math.random() * 9);
-		console.log(randRow + "と" + randCol);
-		console.log(squares[randRow][randCol].checkNeko());
-		if(squares[randRow][randCol].checkNeko() === false){
+		console.log("randRow = " + randRow + " randCol = " + randCol);
+		console.log("rowと同じラインか = " + (row !== randRow) + "★colと同じラインか" + (row !== randCol));
+		if(squares[randRow][randCol].checkNeko() === false && (row !== randRow && col !== randCol)){
 			squares[randRow][randCol].setNeko();
 			cnt++;
-			console.log("現在のネコの設置数:" + cnt);
 			if(cnt === bomb)break;
 		}
 	}
@@ -120,8 +123,6 @@ fillNeko = function(row, col){
 				cnt = getCnt(x, y);
 				squares[x][y].setNumber(cnt);
 				tmp++;
-				console.log("x =" + x + " y = " + y);
-				console.log("呼び出し回数：" + tmp);
 			}
 		}
 	}

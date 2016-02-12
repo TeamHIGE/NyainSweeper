@@ -51,7 +51,6 @@ var Square = function(){
 	
 	this.setNumber = function(nekoNum){
 		number = nekoNum;
-		console.log("number‚Ì’†g‚Í" + number);
 		return number;
 	};
 	
