@@ -80,6 +80,35 @@ var Board = function(rows, cols){
 		}
 	};
 	
+	/**
+	*	指定されたマスの中身を判定する。
+	*/
+	
+	this.massStatus = function(row,col,massJudge1,massJudge2,massJudge3){
+		console.log("massStatus(board)");
+		massJudge1 = massJudge1 || function(){};
+		
+		if(squares[row][col].getStatus() === "neko"){
+			if(typeof massJudge1 === "function"){
+				console.log("ok");
+				massJudge1();
+			}
+		}
+		
+		if(squares[row][col].getStatus() === "number"){
+			if(typeof massJudge2 === "function"){
+				console.log("ok");
+				massJudge2();
+			}
+		}
+		
+		if(squares[row][col].getStatus() === "nbsp"){
+			if(typeof massJudge3 === "function"){
+				console.log("ok");
+				massJudge();
+			}
+		}
+	};
 };
 
 	
