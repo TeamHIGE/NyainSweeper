@@ -90,7 +90,7 @@ var Board = function(rows, cols){
  *	
  */
 
-var fillNeko = function(row, col){
+fillNeko = function(row, col){
 	var cnt = 0;
 	console.log("fillNeko");
 	while(1){
@@ -119,7 +119,7 @@ var fillNeko = function(row, col){
 /**
  *	ü‚è‚Ì‚Ë‚±‚Ì”‚ğ”‚¦‚é
  */
-var getCnt = function(x, y){
+getCnt = function(x, y){
 	console.log("getCnt");
 	tmpCnt = 0;
 	//¶‘¤‚ÌŒŸ¸
