@@ -8,24 +8,23 @@ var initGame = function(row, col){
 	console.log(board.checkState());
 	board.initMap(row, col, function(){
 		console.log("initMap activate");
-		var c = document.getElementById("click");
+		var s = document.getElementById(row + "-" + col);
 		
-		c.setAttribute("onclick", "openMass(row + "-" + col); return false;");
-		console.log(c);
+		s.setAttribute("onclick", "openMass(row + "-" + col); return false;");
+		console.log(s);
 	});
 };
 
 var openMass = function(row, col){
-	var c = document.getElemntById("click");
+	var s = document.getElementById(row + "-" + col);
 	
-	c.setAttribute("onclick", "initGame(" +row+ ", " +col+ "); return false;");
+	s.setAttribute("onclick", "initGame(" +row+ ", " +col+ "); return false;");
 };
 
 var setFlag = function(row, col){
 	console.log("setFlag(main)");
 	board.setFlag(row, col, function(){
 		var s = document.getElementById(row + "-" + col),img = document.createElement("img");
-		
 		s.setAttribute("oncontextmenu","deleteFlag("+row+ ", " +col+ ");return false;");
 		
 		img.src = "images/flag.png";
