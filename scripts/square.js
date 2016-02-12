@@ -48,7 +48,7 @@ var Square = function(){
 	 *	‚Ü‚í‚è‚Ì‚Ë‚±‚Ì”‚ğ•Û‚·‚é
 	 */
 	
-	this.setNeko = function(nekoNum){
+	this.setNumber = function(nekoNum){
 		number = nekoNum;
 		console.log(number);
 		return number;
