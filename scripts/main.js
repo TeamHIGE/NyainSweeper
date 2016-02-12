@@ -2,7 +2,7 @@
 
 var board = new Board(9,9);
 
-
+//最初の一回のみ
 var initGame = function(row, col){
 	console.log("mainのinitGame、ステータスは以下の通り（true = 開始中、false = 未開始）");
 	console.log(board.checkState());
@@ -23,6 +23,7 @@ var initGame = function(row, col){
 	});
 };
 
+//テスト用
 var openMass = function(row, col){
 	console.log("mainのopenMass");
 	var s = document.getElementById(row + "-" + col);

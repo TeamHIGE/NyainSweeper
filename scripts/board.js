@@ -29,7 +29,7 @@ var Board = function(rows, cols){
 	
 	//ネコの確認
 	this.checkBomb = function(row, col){
-		squares[row][col].checkNeko();
+		return squares[row][col].checkNeko();
 	};
 	
 	
