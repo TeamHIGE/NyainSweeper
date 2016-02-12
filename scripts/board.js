@@ -89,6 +89,50 @@ var Board = function(rows, cols){
 		}
 	};
 	
+	/**
+	*	指定されたマスの中身を判定する。
+	*/
+	
+	this.massStatus = function(row,col,massJudge1,massJudge2,massJudge3){
+		console.log("massStatus(board)");
+		massJudge1 = massJudge1 || function(){};
+		massJudge2 = massJudge2 || function(){};
+		massJudge3 = massJudge3 || function(){};
+		
+		
+		if(squares[row][col].getStatus() === "neko"){
+			if(typeof massJudge1 === "function"){
+				console.log("ok");
+				gameStatus = false;
+				massJudge1();
+			}
+		}
+		
+		if(squares[row][col].getStatus() === "number"){
+			if(typeof massJudge2 === "function"){
+				console.log("ok");
+				openMass();
+				if()
+				massJudge2();
+			}
+		}
+		
+		if(squares[row][col].getStatus() === "nbsp"){
+			if(typeof massJudge3 === "function"){
+				console.log("ok");
+				for(var i = row - 1; i <= 1; i++){
+					for(var j = col - 1; j <= 1; j++){
+						if(i < 0 || j < 0){
+							continue;
+						}
+						else if(i === 0 && j === 0){
+							continue;
+						}
+						
+				massJudge3();
+			}
+		}
+	};
 };
 
 	
