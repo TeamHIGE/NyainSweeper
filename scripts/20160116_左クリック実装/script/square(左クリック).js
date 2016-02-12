@@ -1,16 +1,16 @@
 var Square = function()
 
-	var isOpened = false;
+	var openMass = false;
 	
 	/**
 	*左クリックでマスが開く
 	*/
 	
-	this.clickisOpened = function() {
-		if(isOpened){
+	this.openMass = function() {
+		if(openedMass){
 		return false;
 		}
 
-		isOpened = true;
+		openedMass = true;
 		return true;
 	};
