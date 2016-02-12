@@ -1,49 +1,16 @@
 var Square = function()
 
-	var isOpened = false;
+	var openMass = false;
 	
 	/**
 	*左クリックでマスが開く
 	*/
 	
-	this.clickisOpened = function() {
-		if(isOpened){
-		return true;
+	this.openMass = function() {
+		if(openedMass){
+		return false;
 		}
 
-		isOpened = false;
-		return false;
+		openedMass = true;
+		return true;
 	};
-
-
--------------------------------------------------------------------------------------------------
-
-var Square = function() {
-
-    var flagged = false;
-    
-    /**
-    *このマスに旗を立てる
-    */
-    this.setFlag = function() {
-    	if(flagged){
-        return false;
-        }
-          
-        flagged = true;
-        return true;
-	};
-    
-    
-    /**
-    *このマスから旗を降ろす
-    */
-    this.deleteFlag = function() {
-        if(flagged){
-        flagged = false;
-        return true;
-        }
-        
-        return false; 
-     };   
- };
