@@ -55,7 +55,20 @@ var Board = function(rows, cols){
 		}
 	};
 	
-
+	/**
+	 *	指定されたマスを開く。(2016/02/13 0722)
+	 */	 
+	this.OpenMass = function(row,col,isOpened){
+		console.log("OpenMass(board)");
+		isOpened = isOpened || function(){};
+		console.log(isOpened);
+		
+		if(squares[row][col].OpenMass() === true){
+			if(typeof isOpened === "function"){
+				isOpened();
+			}
+		}
+	};
 	
 	/**
 	 *	指定されたマスに旗を立てる。

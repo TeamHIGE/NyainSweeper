@@ -11,6 +11,7 @@ var Square = function(){
 	 *	ねこ(neko)はいない
 	 *	周りの猫の数(number)は0
 	 *	マスは空白(nbsp)である
+	 *^ マスは開いている
 	 */
 	 
 	var flagged = false;
@@ -18,6 +19,7 @@ var Square = function(){
 	var number = 0;
 	var nbsp = true;
 	var mass_status = "";
+	var isOpened = false;
 	
 	/**
 	 *	ねこを埋める
@@ -94,6 +96,20 @@ var Square = function(){
 	 		return mass_status;
 	 	}
 	 };
+	 
+	/**
+	 *	このマスを開く(2016/02/13 0722)
+	 */ 
+	 this.OpenMass= function(){
+		console.log("openMass(square)");
+		console.log(opening);
+		if(isOpensed){
+			return false;
+		}
+		isOpened = true;
+		console.log(isOpened);
+		return true;
+	};
 	
 	/**
 	 *	このマスに旗を立てる
