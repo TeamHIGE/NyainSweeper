@@ -90,7 +90,7 @@ var Board = function(rows, cols){
  *	
  */
 
-var fillNeko = function(row, col){
+fillNeko = function(row, col){
 	var cnt = 0;
 	console.log("fillNeko");
 	while(1){
@@ -105,8 +105,8 @@ var fillNeko = function(row, col){
 			if(cnt === bomb)break;
 		}
 	}
-	for(x = 0; x < 10; x++){
-		for(y= 0; y < 10; y++){
+	for(x = 0; x < 9; x++){
+		for(y= 0; y < 9; y++){
 			if( squares[x][y].checkNeko() === false){
 				cnt = getCnt(x, y);
 				squares[x][y].setNeko(cnt);
@@ -119,7 +119,7 @@ var fillNeko = function(row, col){
 /**
  *	Žü‚è‚Ì‚Ë‚±‚Ì”‚ð”‚¦‚é
  */
-var getCnt = function(x, y){
+getCnt = function(x, y){
 	console.log("getCnt");
 	tmpCnt = 0;
 	//¶‘¤‚ÌŒŸ¸
@@ -128,24 +128,26 @@ var getCnt = function(x, y){
 		if(y > 0){
 			if(squares[x-1][y-1].checkNeko() === true) tmpCnt++;
 		}
-		if(y < 9){
+		if(y < 8){
 			if(squares[x-1][y+1].checkNeko() === true) tmpCnt++;
 		}
 	}
 	//‰E‘¤‚ÌŒŸ¸
-	if(x < 9){
+	if(x < 8){
 		if(squares[x+1][y].checkNeko() === true) tmpCnt++;
 		if(y > 0){
 			if(squares[x+1][y-1].checkNeko() === true) tmpCnt++;
 		}
-		if(y < 9){
+		if(y < 8){
 			if(squares[x+1][y+1].checkNeko() === true) tmpCnt++;
 		}
 	}
+	//^ã‚ÌŒŸ¸
 	if(y > 0){
 		if(squares[x][y-1].checkNeko() === true) tmpCnt++;
 	}
-	if(y < 9){
+	//^‰º‚ÌŒŸ¸
+	if(y < 8){
 		if(squares[x][y+1].checkNeko() === true) tmpCnt++;
 	}
 	

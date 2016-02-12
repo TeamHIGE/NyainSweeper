@@ -18,6 +18,7 @@ var Square = function(){
 	var neko = false;
 	var number = 0;
 	var nbsp = true;
+	var mass_status = "";
 	
 	/**
 	 *	ねこを埋める
@@ -48,7 +49,7 @@ var Square = function(){
 	 *	まわりのねこの数を保持する
 	 */
 	
-	this.setNeko = function(nekoNum){
+	this.setNumber = function(nekoNum){
 		number = nekoNum;
 		console.log(number);
 		return number;
@@ -72,6 +73,28 @@ var Square = function(){
 		console.log(nbsp);
 		return nbsp;
 	};
+	
+	/**
+	 *	このマスの中身を返す
+	 */
+	 
+	 this.getMassStatus = function(){
+	 	if(nbsp){
+	 		console.log(nbsp);
+	 		mass_status = "nbsp";
+	 		return mass_status;
+	 	}
+	 	else if(number != 0){
+	 		console.log(number);
+	 		mass_status = "number";
+	 		return mass_status;
+	 	}
+	 	else if(neko){
+	 		console.log(neko);
+	 		mass_status = "neko";
+	 		return mass_status;
+	 	}
+	 };
 	
 	/**
 	 *	このマスに旗を立てる
