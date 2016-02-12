@@ -1,7 +1,6 @@
 var Board = function(rows, cols){
 
-	bomb= 9;
-	var gameState = false;
+	var gameState = false;		//ゲームステータス（true = 開始中、false = 未開始）
 
 	if(typeof rows !== "number" || rows < 1)throw Error("illegal rows:" + rows);
 	if(typeof cols !== "number" || cols < 1)throw Error("illegal cols:" + cols);
@@ -27,10 +26,20 @@ var Board = function(rows, cols){
 	this.checkState = function(){
 		return gameState;
 	};
-
+	
+	//ネコの確認
+	this.checkBomb = function(row, col){
+		return squares[row][col].checkNeko();
+	};
+	
+	//数字の確認
+	this.checkNum = function(row, col){
+		return squares[row][col].checkNumber();
+	}
+	
 	
 	/**
-	 *	初期化
+	 *	一回目のネコ設置・数字設置
 	 */
 	
 	this.initMap = function(row, col, startGame){
@@ -80,35 +89,6 @@ var Board = function(rows, cols){
 		}
 	};
 	
-	/**
-	*	指定されたマスの中身を判定する。
-	*/
-	
-	this.massStatus = function(row,col,massJudge1,massJudge2,massJudge3){
-		console.log("massStatus(board)");
-		massJudge1 = massJudge1 || function(){};
-		
-		if(squares[row][col].getStatus() === "neko"){
-			if(typeof massJudge1 === "function"){
-				console.log("ok");
-				massJudge1();
-			}
-		}
-		
-		if(squares[row][col].getStatus() === "number"){
-			if(typeof massJudge2 === "function"){
-				console.log("ok");
-				massJudge2();
-			}
-		}
-		
-		if(squares[row][col].getStatus() === "nbsp"){
-			if(typeof massJudge3 === "function"){
-				console.log("ok");
-				massJudge();
-			}
-		}
-	};
 };
 
 	
@@ -120,25 +100,29 @@ var Board = function(rows, cols){
  */
 
 fillNeko = function(row, col){
+	var bomb = 9;
 	var cnt = 0;
-	console.log("fillNeko");
+	//ネコを設置するよ
 	while(1){
 		randRow = Math.floor( Math.random() * 9);
 		randCol = Math.floor( Math.random() * 9);
-		console.log(randRow + "と" + randCol);
-		console.log(squares[randRow][randCol].checkNeko());
-		if(squares[randRow][randCol].checkNeko() === false){
+		console.log("randRow = " + randRow + " randCol = " + randCol);
+		console.log("rowと同じラインか = " + (row !== randRow) + "★colと同じラインか" + (row !== randCol));
+		if(squares[randRow][randCol].checkNeko() === false && (row !== randRow && col !== randCol)){
 			squares[randRow][randCol].setNeko();
 			cnt++;
-			console.log(cnt);
 			if(cnt === bomb)break;
 		}
 	}
-	for(x = 0; x < 9; x++){
-		for(y= 0; y < 9; y++){
+	//数字を数えるよ
+	cnt = 0;
+	var tmp = 0;
+	for(var x = 0; x < 9; x++){
+		for(var y= 0; y < 9; y++){
 			if( squares[x][y].checkNeko() === false){
 				cnt = getCnt(x, y);
-				squares[x][y].setNeko(cnt);
+				squares[x][y].setNumber(cnt);
+				tmp++;
 			}
 		}
 	}
@@ -149,9 +133,8 @@ fillNeko = function(row, col){
  *	周りのねこの数を数える
  */
 getCnt = function(x, y){
-	console.log("getCnt");
 	tmpCnt = 0;
-	//左側の検査
+	//左側のマスを検査
 	if(x > 0){
 		if(squares[x-1][y].checkNeko() === true) tmpCnt++;
 		if(y > 0){
@@ -161,7 +144,7 @@ getCnt = function(x, y){
 			if(squares[x-1][y+1].checkNeko() === true) tmpCnt++;
 		}
 	}
-	//右側の検査
+	//右側のマスを検査
 	if(x < 8){
 		if(squares[x+1][y].checkNeko() === true) tmpCnt++;
 		if(y > 0){
@@ -171,14 +154,13 @@ getCnt = function(x, y){
 			if(squares[x+1][y+1].checkNeko() === true) tmpCnt++;
 		}
 	}
-	//真上の検査
+	//真上のマスを検査
 	if(y > 0){
 		if(squares[x][y-1].checkNeko() === true) tmpCnt++;
 	}
-	//真下の検査
+	//真下のマスを検査
 	if(y < 8){
 		if(squares[x][y+1].checkNeko() === true) tmpCnt++;
 	}
-	
 	return tmpCnt;
 };

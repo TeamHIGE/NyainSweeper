@@ -13,7 +13,6 @@ var Square = function(){
 	 *	マスは空白(nbsp)である
 	 */
 	 
-	 
 	var flagged = false;
 	var neko = false;
 	var number = 0;
@@ -27,12 +26,13 @@ var Square = function(){
 	 */
 	
 	this.setNeko = function(){
-		if(neko){
+		if(neko == false){
 			neko = true;
+			console.log(neko);
 			console.log("ねこが埋まった");
 			return neko;
 		};
-		console.log(neko);
+		
 		return neko;
 	};
 	
@@ -51,7 +51,6 @@ var Square = function(){
 	
 	this.setNumber = function(nekoNum){
 		number = nekoNum;
-		console.log(number);
 		return number;
 	};
 	
@@ -78,7 +77,7 @@ var Square = function(){
 	 *	このマスの中身を返す
 	 */
 	 
-	 this.getStatus = function(){
+	 this.getMassStatus = function(){
 	 	if(nbsp){
 	 		console.log(nbsp);
 	 		mass_status = "nbsp";
