@@ -13,12 +13,25 @@ var Square = function(){
 	 *	マスは空白(nbsp)である
 	 */
 	 
-	 
+	var openMass = false; 
 	var flagged = false;
 	var neko = false;
 	var number = 0;
 	var nbsp = true;
 	var mass_status = "";
+	
+	/**
+	*左クリックでマスが開く
+	*/
+	
+	this.openMass = function() {
+		if(openedMass){
+		return false;
+		}
+
+		openedMass = true;
+		return true;
+	};
 	
 	/**
 	 *	ねこを埋める
