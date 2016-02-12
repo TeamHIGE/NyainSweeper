@@ -81,17 +81,17 @@ var Square = function(){
 	 this.getMassStatus = function(){
 	 	if(nbsp){
 	 		console.log(nbsp);
-	 		mass_status = nbsp;
+	 		mass_status = "nbsp";
 	 		return mass_status;
 	 	}
 	 	else if(number != 0){
 	 		console.log(number);
-	 		mass_status = number;
+	 		mass_status = "number";
 	 		return mass_status;
 	 	}
 	 	else if(neko){
 	 		console.log(neko);
-	 		mass_status = neko;
+	 		mass_status = "neko";
 	 		return mass_status;
 	 	}
 	 };
