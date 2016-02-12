@@ -78,7 +78,7 @@ var Square = function(){
 	 *	‚±‚Ìƒ}ƒX‚Ì’†g‚ğ•Ô‚·
 	 */
 	 
-	 this.getStatus = function(){
+	 this.getMassStatus = function(){
 	 	if(nbsp){
 	 		console.log(nbsp);
 	 		mass_status = "nbsp";
