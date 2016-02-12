@@ -2,23 +2,35 @@
 
 var board = new Board(9,9);
 
-
+//最初の一回のみ
 var initGame = function(row, col){
-	console.log("initGame");
+	console.log("mainのinitGame、ステータスは以下の通り（true = 開始中、false = 未開始）");
 	console.log(board.checkState());
 	board.initMap(row, col, function(){
 		console.log("initMap activate");
-		var s = document.getElementById(row + "-" + col);
 		
-		s.setAttribute("onclick", "openMass(row + "-" + col); return false;");
-		console.log(s);
+		for(i = 0; i < 9; i++){
+			for(j = 0; j < 9; j++){
+				console.log("i =" + i + " j = " + j);
+				var s = document.getElementById(i + "-" + j);
+				console.log(s);
+				s.setAttribute("onclick", "openMass(" +i+ ", " +j+ "); return false;");
+				if(board.checkBomb(i, j) == true){
+					s.style.backgroundColor = "#008080";
+				}
+			}
+		}
 	});
 };
 
+//テスト用
 var openMass = function(row, col){
+	console.log("mainのopenMass");
 	var s = document.getElementById(row + "-" + col);
 	
 	s.setAttribute("onclick", "initGame(" +row+ ", " +col+ "); return false;");
+	console.log("openMass終了時のsは");
+	console.log(s);
 };
 
 var setFlag = function(row, col){

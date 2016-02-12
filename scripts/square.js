@@ -13,7 +13,6 @@ var Square = function(){
 	 *	ƒ}ƒX‚Í‹ó”’(nbsp)‚Å‚ ‚é
 	 */
 	 
-	 
 	var flagged = false;
 	var neko = false;
 	var number = 0;
@@ -27,12 +26,13 @@ var Square = function(){
 	 */
 	
 	this.setNeko = function(){
-		if(neko){
+		if(neko == false){
 			neko = true;
+			console.log(neko);
 			console.log("‚Ë‚±‚ª–„‚Ü‚Á‚½");
 			return neko;
 		};
-		console.log(neko);
+		
 		return neko;
 	};
 	
@@ -51,7 +51,7 @@ var Square = function(){
 	
 	this.setNumber = function(nekoNum){
 		number = nekoNum;
-		console.log(number);
+		console.log("number‚Ì’†g‚Í" + number);
 		return number;
 	};
 	
