@@ -30,8 +30,6 @@ var Square = function(){
 	this.setNeko = function(){
 		if(neko == false){
 			neko = true;
-			console.log(neko);
-			console.log("ÇÀÇ±Ç™ñÑÇ‹Ç¡ÇΩ");
 			return neko;
 		};
 		
@@ -71,7 +69,6 @@ var Square = function(){
 	 */
 	
 	this.showNbsp = function(){
-		console.log(nbsp);
 		return nbsp;
 	};
 	
@@ -79,19 +76,16 @@ var Square = function(){
 	 *	Ç±ÇÃÉ}ÉXÇÃíÜêgÇï‘Ç∑
 	 */
 	 
-	 this.getMassStatus = function(){
+	 this.getStatus = function(){
 	 	if(nbsp){
-	 		console.log(nbsp);
 	 		mass_status = "nbsp";
 	 		return mass_status;
 	 	}
 	 	else if(number != 0){
-	 		console.log(number);
 	 		mass_status = "number";
 	 		return mass_status;
 	 	}
 	 	else if(neko){
-	 		console.log(neko);
 	 		mass_status = "neko";
 	 		return mass_status;
 	 	}
@@ -104,7 +98,7 @@ var Square = function(){
 	 */ 
 	 this.openMass= function(){
 		console.log("openMass(square)");
-		console.log(opening);
+		console.log(isOpened);
 		if(isOpened){
 			return false;
 		}
@@ -118,13 +112,10 @@ var Square = function(){
 	 */
 	 
 	 this.setFlag= function(){
-		console.log("setFlag(square)");
-		console.log(flagged);
 		if(flagged){
 			return false;
 		}
 		flagged = true;
-		console.log(flagged);
 		return true;
 	};
 	
@@ -133,14 +124,11 @@ var Square = function(){
 	 */
 	 
 	this.deleteFlag = function(){
-	console.log("deleteFlag(square)");
-	console.log(flagged);
 		if(flagged){
 			flagged = false;
 			return true;
 		}
 		
-		console.log(flagged);
 		return false;
 	};
 	

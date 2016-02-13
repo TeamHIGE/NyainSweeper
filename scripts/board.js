@@ -46,28 +46,12 @@ var Board = function(rows, cols){
 	this.initMap = function(row, col, startGame){
 		setBomb(12);
 		if(gameState == false){
-			console.log("initMap(board)");
 			startGame = startGame || function(){};
 			
 			fillNeko(row, col);
 			if(typeof startGame === "function"){
 				gameState = true;
 				startGame();
-			}
-		}
-	};
-	
-	/**
-	 *	指定されたマスを開く。(2016/02/13 0722)
-	 */	 
-	this.OpenMass = function(row,col,isOpened){
-		console.log("OpenMass(board)");
-		isOpened = isOpened || function(){};
-		console.log(isOpened);
-		
-		if(squares[row][col].OpenMass() === true){
-			if(typeof isOpened === "function"){
-				isOpened();
 			}
 		}
 	};
@@ -117,8 +101,6 @@ var Board = function(rows, cols){
 		if(squares[row][col].chkOpen() === true){
 			return;
 		}
-		
-		squares[row][col].openMass();
 		
 		//マスの中身がネコだった場合
 		if(squares[row][col].getStatus() === "neko"){
@@ -182,8 +164,6 @@ fillNeko = function(row, col){
 	while(1){
 		randRow = Math.floor( Math.random() * 9);
 		randCol = Math.floor( Math.random() * 9);
-		console.log("randRow = " + randRow + " randCol = " + randCol);
-		console.log("rowと同じラインか = " + (row !== randRow) + "★colと同じラインか" + (row !== randCol));
 		if(squares[randRow][randCol].checkNeko() === false && (row !== randRow && col !== randCol)){
 			squares[randRow][randCol].setNeko();
 			cnt++;
