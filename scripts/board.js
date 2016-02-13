@@ -2,6 +2,8 @@ var Board = function(rows, cols){
 
 	var gameState = false;		//ゲームステータス（true = 開始中、false = 未開始）
 	var clearStatus;
+	var openCnt1 = 0;			//openMass用の変数
+	var openCnt2 = 0;			//openMass用の変数
 	
 	if(typeof rows !== "number" || rows < 1)throw Error("illegal rows:" + rows);
 	if(typeof cols !== "number" || cols < 1)throw Error("illegal cols:" + cols);
@@ -93,19 +95,26 @@ var Board = function(rows, cols){
 	*/
 	
 	this.openMass = function(row,col,massJudge1,massJudge2,massJudge3){
-		console.log("massStatus(board)");
+		console.log(row + "-" + col);
+		loopCnt = openCnt1;
+		openCnt1 = openCnt2
+		
 		massJudge1 = massJudge1 || function(){};	//ゲームオーバー／(^0^)＼を表示・ネコ位置を表示させる処理
 		massJudge2 = massJudge2 || function(){};	//マスの数字を表示させる処理
 		massJudge3 = massJudge3 || function(){};	//
-		
-		if(squares[row][col].chkOpen() === true){
+		console.log("chkOpenの中身は↓");
+		console.log(squares[row][col].chkOpen());
+		if(squares[row][col].chkOpen() === true){	
 			return;
 		}
 		
+		squares[row][col].openMass();
+		console.log("getStatusの中身は↓");
+		console.log(squares[row][col].getStatus());
 		//マスの中身がネコだった場合
 		if(squares[row][col].getStatus() === "neko"){
 			if(typeof massJudge1 === "function"){
-				console.log("ok");
+				console.log("neko");
 				gameState = false;
 				clearStatus = false;
 				massJudge1();
@@ -115,8 +124,9 @@ var Board = function(rows, cols){
 		//マスの中身が数字だった場合
 		if(squares[row][col].getStatus() === "number"){
 			if(typeof massJudge2 === "function"){
-				console.log("ok");
+				console.log("number");
 				var cnt = 0;
+				//残りマス＝ネコの数の場合クリアの処理
 				for(var x = 0; x < 9; x++){
 					for(var y= 0; y < 9; y++){
 						if(squares[x][y].chkOpen() === false){
@@ -124,26 +134,41 @@ var Board = function(rows, cols){
 						}
 					}
 				}
-				if(getBomb() === cnt){				//残りマス＝ネコの数の場合クリア
+				if(getBomb() === cnt){
 					gameState = false;
-					clearStatus = true;
+					var s = document.getElementById("top");
+					s.item(0).src = "image/success.png";
 				}
+				//mainのmassJudge2へ
 				massJudge2();
 			}
 		}
 		
 		//マスの中身が空白だった場合
 		if(squares[row][col].getStatus() === "nbsp"){
-			for(var i = row - 1; i <= row + 1; i++){
-				for(var j = col - 1; j <= col + 1; j++){
-					if(i < 0 || j < 0 || 8 < i || 8 < j){		//枠外はスルー
-						continue;
-					}
-					else if(i === row && j === col){			//自身をスルー
-						continue;
-					}
-					openMass(i,j,massJudge1,massJudge2,massJudge3);
+			massJudge3();
+			openCnt2++;
+			loop = openCnt1;
+			openCnt1 = openCnt2
+			for( i = loop; i < openCnt1; i++ ) {
+				//左をチェック
+				if(row > 0 ){
+					openMass(row-1, col, massJudge1, massJudge2, massJudge3);
 				}
+				//右をチェック
+				if(row < 8 ){
+					openMass(row+1, col, massJudge1, massJudge2, massJudge3);
+				}
+				//上をチェック
+				if(col > 0 ){
+					openMass(row, col-1, massJudge1, massJudge2, massJudge3);
+				}
+				//下をチェック
+				if(col < 8 ){
+					openMass(row, col+1, massJudge1, massJudge2, massJudge3);
+				}
+				if( openCnt1 == openCnt2 ) break;
+				
 			}
 		}
 	};

@@ -30,6 +30,8 @@ var Square = function(){
 	this.setNeko = function(){
 		if(neko == false){
 			neko = true;
+			number = 99
+			nbsp = false;
 			return neko;
 		};
 		
@@ -51,6 +53,9 @@ var Square = function(){
 	
 	this.setNumber = function(nekoNum){
 		number = nekoNum;
+		if(number !== 0){
+			nbsp = false;
+		}
 		return number;
 	};
 	
@@ -77,11 +82,14 @@ var Square = function(){
 	 */
 	 
 	 this.getStatus = function(){
+	 	console.log("nbsp = " + nbsp);
+	 	console.log("number = " + number);
+	 	console.log("neko = " + neko);
 	 	if(nbsp){
 	 		mass_status = "nbsp";
 	 		return mass_status;
 	 	}
-	 	else if(number != 0){
+	 	else if(number != 0 && number != 99){
 	 		mass_status = "number";
 	 		return mass_status;
 	 	}
@@ -137,7 +145,6 @@ var Square = function(){
 	 */
 	 
 	 this.chkOpen = function(){
-	 	console.log(isOpened);
 	 	return isOpened;
 	 };
 };

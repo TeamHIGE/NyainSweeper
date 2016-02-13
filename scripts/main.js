@@ -26,10 +26,79 @@ var initGame = function(row, col){
 var openMass = function(row, col){
 	console.log("OpenMass(main)");
 	board.openMass(row, col, function(){
-		var s = document.getElementById(row + "-" + col),img = document.createElement("img");
-		s.setAttribute("oncontextmenu","OpenMass("+row+ ", " +col+ ");return false;");
+		//中身がネコの場合の処理		
+		var s = document.getElementById("nekoneko");
+		console.log(s);
+		s.item(0).src = "image/success.png";
 		
-		img.src = "images/flag.png";  //開いたときの画像いれる？
+		var c = document.getElementsByName("nekoneko");
+		console.log(c);
+		c.item(0).src = "image/success.png";
+		
+		//img.src = "images/neko.png";  //開いたときの画像いれる？
+		//s.appendChild(img);
+
+	//中身が数字の場合の処理
+	},function(){
+		console.log("mainの中身が数字でした処理");
+		num = board.checkNum(row, col);
+		switch(num){
+			case 1:
+				var s = document.getElementById(row + "-" + col);
+				img = document.createElement("img");
+				img.src = "images/num1.png";
+				s.appendChild(img);
+				break;
+			case 2:
+				var s = document.getElementById(row + "-" + col);
+				img = document.createElement("img");
+				img.src = "images/num2.png";
+				s.appendChild(img);
+				break;
+			case 3:
+				var s = document.getElementById(row + "-" + col);
+				img = document.createElement("img");
+				img.src = "images/num3.png";
+				s.appendChild(img);
+				break;
+			case 4:
+				var s = document.getElementById(row + "-" + col);
+				img = document.createElement("img");
+				img.src = "images/num4.png";
+				s.appendChild(img);
+				break;
+			case 5:
+				var s = document.getElementById(row + "-" + col);
+				img = document.createElement("img");
+				img.src = "images/num5.png";
+				s.appendChild(img);
+				break;
+			case 6:
+				var s = document.getElementById(row + "-" + col);
+				img = document.createElement("img");
+				img.src = "images/num6.png";
+				s.appendChild(img);
+				break;
+			case 7:
+				var s = document.getElementById(row + "-" + col);
+				img = document.createElement("img");
+				img.src = "images/num7.png";
+				s.appendChild(img);
+				break;
+			case 8:
+				var s = document.getElementById(row + "-" + col);
+				img = document.createElement("img");
+				img.src = "images/num8.png";
+				s.appendChild(img);
+				break;
+		}
+		
+	//中身が空白の場合の処理
+	},function(){
+		console.log("mainの中身が空白でした処理");
+		var s = document.getElementById(row + "-" + col);
+		img = document.createElement("img");
+		img.src = "images/blank.png";
 		s.appendChild(img);
 	});
 };
@@ -38,7 +107,8 @@ var openMass = function(row, col){
 var setFlag = function(row, col){
 	console.log("setFlag(main)");
 	board.setFlag(row, col, function(){
-		var s = document.getElementById(row + "-" + col),img = document.createElement("img");
+		var s = document.getElementById(row + "-" + col);
+		img = document.createElement("img");
 		s.setAttribute("oncontextmenu","deleteFlag("+row+ ", " +col+ ");return false;");
 		
 		img.src = "images/flag.png";
