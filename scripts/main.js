@@ -32,15 +32,31 @@ var openMass = function(row, col){
 	console.log(s);
 };
 
-*マスの中身判定*/
-var massStatus = function(row, col){
-	console.log("massStatus(main)");
-	board.massStatus(row, col, function(){
+//マスを開く(2016/02/13 0722)
+var OpenMass = function(row, col){
+	console.log("OpenMass(main)");
+	board.OpenMass(row, col, function(){
 		var s = document.getElementById(row + "-" + col),img = document.createElement("img");
-		s.setAttribute("oncontextmenu","deleteFlag("+row+ ", " +col+ ");return false;");
+		s.setAttribute("oncontextmenu","OpenMass("+row+ ", " +col+ ");return false;");
+		
+		img.src = "images/flag.png";  //開いたときの画像いれる？
+		s.appendChild(img);
 	});
 };
 
+//マスの判定 (2016/02/13 0722)
+var massStatus = function(row, col){
+	console.log("massStatus(main)");
+	board.massStatus(row, col, function(){
+	});
+//ゲームステータス(OFF)エンドステータス(ON)	
+//クリア表示
+//ゲームステータス(OFF)エンドステータス(ON)	
+//残念表示
+};
+
+//旗を立てる
+>>>>>>> 96e995af88c7a9fadab3e47708d766700281f6f4
 var setFlag = function(row, col){
 	console.log("setFlag(main)");
 	board.setFlag(row, col, function(){
@@ -52,6 +68,7 @@ var setFlag = function(row, col){
 	});
 };
 
+//旗を降ろす
 var deleteFlag = function(row, col){
 	console.log("deleteFlag(main)");
 	board.deleteFlag(row, col, function(){
