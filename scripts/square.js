@@ -99,11 +99,13 @@ var Square = function(){
 	 
 	/**
 	 *	このマスを開く(2016/02/13 0722)
+	 *	isOpenedの説明 : true = 開いてる false = 開いてない
+	 *	opennMassの仕様 : return true = 開くことに成功 false = もともと開いてるZE
 	 */ 
-	 this.OpenMass= function(){
+	 this.openMass= function(){
 		console.log("openMass(square)");
 		console.log(opening);
-		if(isOpensed){
+		if(isOpened){
 			return false;
 		}
 		isOpened = true;
@@ -141,4 +143,13 @@ var Square = function(){
 		console.log(flagged);
 		return false;
 	};
+	
+	/**
+	 *	マスが開いているかを確認する
+	 */
+	 
+	 this.chkOpen = function(){
+	 	console.log(isOpened);
+	 	return isOpened;
+	 };
 };

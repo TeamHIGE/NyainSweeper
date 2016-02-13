@@ -1,7 +1,8 @@
 var Board = function(rows, cols){
 
 	var gameState = false;		//ゲームステータス（true = 開始中、false = 未開始）
-
+	var clearStatus;
+	
 	if(typeof rows !== "number" || rows < 1)throw Error("illegal rows:" + rows);
 	if(typeof cols !== "number" || cols < 1)throw Error("illegal cols:" + cols);
 	
@@ -43,6 +44,7 @@ var Board = function(rows, cols){
 	 */
 	
 	this.initMap = function(row, col, startGame){
+		setBomb(12);
 		if(gameState == false){
 			console.log("initMap(board)");
 			startGame = startGame || function(){};
@@ -106,17 +108,24 @@ var Board = function(rows, cols){
 	*	指定されたマスの中身を判定する。
 	*/
 	
-	this.massStatus = function(row,col,massJudge1,massJudge2,massJudge3){
+	this.openMass = function(row,col,massJudge1,massJudge2,massJudge3){
 		console.log("massStatus(board)");
 		massJudge1 = massJudge1 || function(){};	//ゲームオーバー／(^0^)＼を表示・ネコ位置を表示させる処理
 		massJudge2 = massJudge2 || function(){};	//マスの数字を表示させる処理
 		massJudge3 = massJudge3 || function(){};	//
 		
-		//マスの中身がネコだったｈ\\\baaa\\\\\\
+		if(squares[row][col].chkOpen() === true){
+			return;
+		}
+		
+		squares[row][col].openMass();
+		
+		//マスの中身がネコだった場合
 		if(squares[row][col].getStatus() === "neko"){
 			if(typeof massJudge1 === "function"){
 				console.log("ok");
-				gameStatus = false;
+				gameState = false;
+				clearStatus = false;
 				massJudge1();
 			}
 		}
@@ -125,29 +134,34 @@ var Board = function(rows, cols){
 		if(squares[row][col].getStatus() === "number"){
 			if(typeof massJudge2 === "function"){
 				console.log("ok");
-				openMass();
-				//残りマス＝ネコの数の場合クリア
-				if(){
-				
+				var cnt = 0;
+				for(var x = 0; x < 9; x++){
+					for(var y= 0; y < 9; y++){
+						if(squares[x][y].chkOpen() === false){
+							cnt++;
+						}
+					}
 				}
-			massJudge2();
+				if(getBomb() === cnt){				//残りマス＝ネコの数の場合クリア
+					gameState = false;
+					clearStatus = true;
+				}
+				massJudge2();
 			}
 		}
 		
-		//マスの中身が空爆たっだ場合
+		//マスの中身が空白だった場合
 		if(squares[row][col].getStatus() === "nbsp"){
-			if(typeof massJudge3 === "function"){
-				console.log("ok");
-				for(var i = row - 1; i <= 1; i++){
-					for(var j = col - 1; j <= 1; j++){
-						if(i < 0 || j < 0){
-							continue;
-						}
-						else if(i === 0 && j === 0){
-							continue;
-						}
-						
-				massJudge3();
+			for(var i = row - 1; i <= row + 1; i++){
+				for(var j = col - 1; j <= col + 1; j++){
+					if(i < 0 || j < 0 || 8 < i || 8 < j){		//枠外はスルー
+						continue;
+					}
+					else if(i === row && j === col){			//自身をスルー
+						continue;
+					}
+					openMass(i,j,massJudge1,massJudge2,massJudge3);
+				}
 			}
 		}
 	};
@@ -162,7 +176,7 @@ var Board = function(rows, cols){
  */
 
 fillNeko = function(row, col){
-	var bomb = 9;
+	var nekoBomb = getBomb();
 	var cnt = 0;
 	//ネコを設置するよ
 	while(1){
@@ -173,7 +187,7 @@ fillNeko = function(row, col){
 		if(squares[randRow][randCol].checkNeko() === false && (row !== randRow && col !== randCol)){
 			squares[randRow][randCol].setNeko();
 			cnt++;
-			if(cnt === bomb)break;
+			if(cnt === nekoBomb)break;
 		}
 	}
 	//数字を数えるよ
@@ -226,3 +240,13 @@ getCnt = function(x, y){
 	}
 	return tmpCnt;
 };
+
+//ゲッター
+getBomb = function(){
+	return bomb;
+}
+//セッター
+setBomb = function(bomb){
+	this.bomb = bomb;
+	return 0;
+}
