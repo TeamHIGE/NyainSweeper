@@ -44,19 +44,7 @@ var OpenMass = function(row, col){
 	});
 };
 
-//マスの判定 (2016/02/13 0722)
-var massStatus = function(row, col){
-	console.log("massStatus(main)");
-	board.massStatus(row, col, function(){
-	});
-//ゲームステータス(OFF)エンドステータス(ON)	
-//クリア表示
-//ゲームステータス(OFF)エンドステータス(ON)	
-//残念表示
-};
-
 //旗を立てる
->>>>>>> 96e995af88c7a9fadab3e47708d766700281f6f4
 var setFlag = function(row, col){
 	console.log("setFlag(main)");
 	board.setFlag(row, col, function(){
