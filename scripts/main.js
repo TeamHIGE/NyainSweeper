@@ -4,38 +4,28 @@ var board = new Board(9,9);
 
 //最初の一回のみ
 var initGame = function(row, col){
-	console.log("mainのinitGame、ステータスは以下の通り（true = 開始中、false = 未開始）");
 	board.initMap(row, col, function(){
-		console.log("initMap activate");
 		
 		for(i = 0; i < 9; i++){
 			for(j = 0; j < 9; j++){
 				var s = document.getElementById(i + "-" + j);
 				s.setAttribute("onclick", "openMass(" +i+ ", " +j+ "); return false;");
-				var tmpCnt = board.checkNum(i, j);
-				s.innerText =  tmpCnt;
-				if(board.checkBomb(i, j) == true){
-					s.style.backgroundColor = "#008080";
-				}
+				//var tmpCnt = board.checkNum(i, j);
+				//s.innerText =  tmpCnt;
+				//if(board.checkBomb(i, j) == true){
+				//	s.style.backgroundColor = "#008080";
+				//}
 			}
 		}
+		openMass(row, col);
 	});
 };
 
-//テスト用
-var openMass = function(row, col){
-	console.log("mainのopenMass");
-	var s = document.getElementById(row + "-" + col);
-	
-	s.setAttribute("onclick", "initGame(" +row+ ", " +col+ "); return false;");
-	console.log("openMass終了時のsは");
-	console.log(s);
-};
 
 //マスを開く(2016/02/13 0722)
-var OpenMass = function(row, col){
+var openMass = function(row, col){
 	console.log("OpenMass(main)");
-	board.OpenMass(row, col, function(){
+	board.openMass(row, col, function(){
 		var s = document.getElementById(row + "-" + col),img = document.createElement("img");
 		s.setAttribute("oncontextmenu","OpenMass("+row+ ", " +col+ ");return false;");
 		
