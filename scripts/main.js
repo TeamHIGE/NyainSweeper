@@ -27,13 +27,13 @@ var openMass = function(row, col){
 	console.log("OpenMass(main)");
 	board.openMass(row, col, function(){
 		//中身がネコの場合の処理		
-		var s = document.getElementById("nekoneko");
-		console.log(s);
-		s.item(0).src = "image/success.png";
+		var s = document.getElementById("neko");
+		s.src = "images/sippai.png";
 		
-		var c = document.getElementsByName("nekoneko");
-		console.log(c);
-		c.item(0).src = "image/success.png";
+		var c = document.getElementById("text1");
+		console.log("text = "+c);
+		c.text = "起こしたな"
+		
 		
 		//img.src = "images/neko.png";  //開いたときの画像いれる？
 		//s.appendChild(img);
