@@ -56,6 +56,7 @@ var massStatus = function(row, col){
 };
 
 //Šø‚ð—§‚Ä‚é
+>>>>>>> 96e995af88c7a9fadab3e47708d766700281f6f4
 var setFlag = function(row, col){
 	console.log("setFlag(main)");
 	board.setFlag(row, col, function(){
