@@ -30,11 +30,6 @@ var openMass = function(row, col){
 		var s = document.getElementById("neko");
 		s.src = "images/sippai.png";
 		
-		var c = document.getElementById("text1");
-		console.log("text = "+c);
-		c.text = "‹N‚±‚µ‚½‚È"
-		
-		
 		//img.src = "images/neko.png";  //ŠJ‚¢‚½‚Æ‚«‚Ì‰æ‘œ‚¢‚ê‚éH
 		//s.appendChild(img);
 
